@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Status { idle, moving, crouching, sliding, climbingLadder, wallRunning, grabbedLedge, climbingLedge, vaulting }
+public enum Status { idle, moving, crouching, sliding, climbingLadder, wallRunning, grabbedLedge, climbingLedge, vaulting, hookshotThrown, hookshotPulled}
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +15,13 @@ public class PlayerController : MonoBehaviour
     private LayerMask ladderLayer;
     [SerializeField]
     private LayerMask wallrunLayer;
+    [SerializeField]
+    private LayerMask HookshotLayer;
+
+    [SerializeField] private Transform playerCamera;
+    [SerializeField] private Transform hookshotTransform;
+
+    public CharacterController CharacterController;
 
     GameObject vaultHelper;
 
@@ -24,6 +31,7 @@ public class PlayerController : MonoBehaviour
     Vector3 slideDir;
     Vector3 vaultOver;
     Vector3 vaultDir;
+    Vector3 hookshotPos;
 
     PlayerMovement movement;
     PlayerInput playerInput;
@@ -40,6 +48,7 @@ public class PlayerController : MonoBehaviour
     float height;
     float halfradius;
     float halfheight;
+    float hookshotSize;
 
     int wallDir = 1;
 
@@ -58,6 +67,8 @@ public class PlayerController : MonoBehaviour
         halfradius = radius / 2f;
         halfheight = height / 2f;
         rayDistance = halfheight + radius + .1f;
+
+        hookshotTransform.gameObject.SetActive(false);
     }
 
     /******************************* UPDATE ******************************/
@@ -75,6 +86,7 @@ public class PlayerController : MonoBehaviour
         CheckLadderClimbing();
         UpdateLedgeGrabbing();
         CheckForVault();
+        CheckHookshot();
         //Add new check to change status right here
 
         //Misc
@@ -139,6 +151,12 @@ public class PlayerController : MonoBehaviour
                 break;
             case Status.vaulting:
                 VaultMovement();
+                break;
+            case Status.hookshotPulled:
+                HookshotMovement();
+                break;
+            case Status.hookshotThrown:
+                HookshotThrow();
                 break;
             default:
                 DefaultMovement();
@@ -328,7 +346,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckForWallrun()
     {
-        if (!canInteract || movement.grounded || movement.moveDirection.y >= 0)
+        if (!canInteract || movement.grounded || movement.moveDirection.y >= 0 || !playerInput.run)
             return;
 
         int wall = 0;
@@ -363,7 +381,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.Jump()) //als de speler springt terwijl hij aan de ledge hangt, springt hij er van af in de richting waar hij naar kijkt
         {
-            movement.Jump((Vector3.up + transform.forward).normalized, 1f);
+            movement.Jump((Vector3.up + transform.forward).normalized, 1.2f);
             playerInput.ResetJump();
             status = Status.moving;
         }
@@ -399,12 +417,9 @@ public class PlayerController : MonoBehaviour
 
             Vector3 checkCollisions = transform.position + transform.TransformDirection(rotatePos); //grab it closer now
 
-            //Check if you would be able to stand on the ledge
-            if (!Physics.SphereCast(checkCollisions, radius, Vector3.up, out hit, height - radius))
-            {
-                canInteract = false;
-                status = Status.grabbedLedge;
-            }
+            canInteract = false;
+            status = Status.grabbedLedge;
+
         }
     }
 
@@ -427,8 +442,8 @@ public class PlayerController : MonoBehaviour
                 Vector2 down = playerInput.down;
                 if (down.y == -1)
                     status = Status.moving; //laat je van de ledge vallen als je hangend op S drukt
-                else if (down.y == 1)
-                    status = Status.climbingLedge; //laat je op de ledge klimmen als je hangend op W drukt
+                //else if (down.y == 1)
+                //    status = Status.climbingLedge; //laat je op de ledge klimmen als je hangend op W drukt
             }
         }
     }
@@ -488,6 +503,59 @@ public class PlayerController : MonoBehaviour
     {
         vaultHelper.transform.position = vaultOver;
         vaultHelper.transform.rotation = Quaternion.LookRotation(vaultDir);
+    }
+    /*********************************************************************/
+
+    /**************************** HOOKSHOT  ******************************/
+    void CheckHookshot()
+    {
+        if (canInteract && Input.GetKeyDown(KeyCode.E))
+        {
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit raycastHit, Mathf.Infinity, HookshotLayer))
+            {
+                hookshotPos = raycastHit.point;
+                hookshotSize = 0f;
+                hookshotTransform.gameObject.SetActive(true);
+                hookshotTransform.localScale = Vector3.zero;
+                status = Status.hookshotThrown;
+                canInteract = false;
+            }
+        }
+    }
+
+    void HookshotThrow()
+    {
+        hookshotTransform.LookAt(hookshotPos);
+
+        float hookshotThrowSpeed = 500f;
+        hookshotSize += hookshotThrowSpeed * Time.deltaTime;
+        hookshotTransform.localScale = new Vector3(1, 1, hookshotSize);
+
+        if (!canInteract && hookshotSize >= Vector3.Distance(transform.position, hookshotPos))
+        {
+            status = Status.hookshotPulled;
+            canInteract = false;
+        }
+    }
+    void HookshotMovement()
+    {
+        float hookshotSpeedMin = 10f;
+        float hookshotSpeedMax = 40f;
+        float hookshotSpeed = Mathf.Clamp(Vector3.Distance(hookshotPos, transform.position), hookshotSpeedMin, hookshotSpeedMax);
+        float hookshotSpeedMultiplier = 3f;
+
+        Vector3 hookshotDir = (hookshotPos - transform.position).normalized;
+
+        hookshotTransform.LookAt(hookshotPos);
+
+        CharacterController.Move(hookshotDir * hookshotSpeed * hookshotSpeedMultiplier * Time.deltaTime);
+
+        float reachedHookshotPosDistance = 2f;
+        if (Vector3.Distance(transform.position, hookshotPos) < reachedHookshotPosDistance)
+        {
+            status = Status.grabbedLedge;
+            hookshotTransform.gameObject.SetActive(false);
+        }
     }
     /*********************************************************************/
 

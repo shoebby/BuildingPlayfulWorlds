@@ -263,6 +263,11 @@ MonoBehaviour:
   wallrunLayer:
     serializedVersion: 2
     m_Bits: 256
+  HookshotLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  debugHitpointTransform: {fileID: 0}
+  playerCamera: {fileID: 7085721663646366569}
 --- !u!114 &1149800568
 MonoBehaviour:
   m_ObjectHideFlags: 0
