@@ -511,14 +511,13 @@ public class PlayerController : MonoBehaviour
     {
         if (canInteract && Input.GetKeyDown(KeyCode.E))
         {
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit raycastHit, Mathf.Infinity, HookshotLayer))
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit raycastHit, 100, HookshotLayer))
             {
                 hookshotPos = raycastHit.point;
                 hookshotSize = 0f;
                 hookshotTransform.gameObject.SetActive(true);
                 hookshotTransform.localScale = Vector3.zero;
                 status = Status.hookshotThrown;
-                canInteract = false;
             }
         }
     }
@@ -527,14 +526,13 @@ public class PlayerController : MonoBehaviour
     {
         hookshotTransform.LookAt(hookshotPos);
 
-        float hookshotThrowSpeed = 500f;
+        float hookshotThrowSpeed = 250f;
         hookshotSize += hookshotThrowSpeed * Time.deltaTime;
         hookshotTransform.localScale = new Vector3(1, 1, hookshotSize);
 
-        if (!canInteract && hookshotSize >= Vector3.Distance(transform.position, hookshotPos))
+        if (hookshotSize >= Vector3.Distance(transform.position, hookshotPos))
         {
             status = Status.hookshotPulled;
-            canInteract = false;
         }
     }
     void HookshotMovement()
