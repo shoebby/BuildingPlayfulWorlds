@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float walkSpeed = 4.0f;
+    public float initialWalkSpeed;
     public float runSpeed = 8.0f;
+    public float initialRunSpeed;
     public float slideSpeed = 10.0f;
+    public float initialSlideSpeed;
     public float crouchSpeed = 2f;
-    [SerializeField]
-    private float jumpSpeed = 8.0f;
+    public float jumpSpeed = 8.0f;
+    public float initialJumpSpeed;
     [SerializeField]
     private float gravity = 20.0f;
     [SerializeField]
@@ -35,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // Saving component references to improve performance.
         controller = GetComponent<CharacterController>();
+
+        initialWalkSpeed = walkSpeed;
+        initialRunSpeed = runSpeed;
+        initialSlideSpeed = slideSpeed;
+        initialJumpSpeed = jumpSpeed;
     }
     
     private void Update()

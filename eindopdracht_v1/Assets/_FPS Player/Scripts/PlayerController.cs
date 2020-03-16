@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     Vector3 vaultDir;
     Vector3 hookshotPos;
 
+    ParticleSystem speedboostParticleSystem;
+    ParticleSystem jumpboostParticleSystem;
     PlayerMovement movement;
     PlayerInput playerInput;
     AnimateLean animateLean;
@@ -69,6 +71,9 @@ public class PlayerController : MonoBehaviour
         rayDistance = halfheight + radius + .1f;
 
         hookshotTransform.gameObject.SetActive(false);
+
+        speedboostParticleSystem = transform.Find("LeanAnimator").Find("Main Camera").Find("speedboost").GetComponent<ParticleSystem>();
+        jumpboostParticleSystem = transform.Find("LeanAnimator").Find("Main Camera").Find("jumpboost").GetComponent<ParticleSystem>();
     }
 
     /******************************* UPDATE ******************************/
@@ -557,6 +562,32 @@ public class PlayerController : MonoBehaviour
     }
     /*********************************************************************/
 
+    /***************************** BOOSTS  *******************************/
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        switch(hit.gameObject.tag)
+        {
+            case "Speedboost":
+                speedboostParticleSystem.Play();
+                movement.runSpeed = 20f;
+                movement.walkSpeed = 16f;
+                movement.slideSpeed = 24f;
+                break;
+            case "JumpPad":
+                jumpboostParticleSystem.Play();
+                movement.jumpSpeed = 16f;
+                break;
+            case "Ground":
+                speedboostParticleSystem.Stop();
+                jumpboostParticleSystem.Stop();
+                movement.jumpSpeed = movement.initialJumpSpeed;
+                movement.runSpeed = movement.initialRunSpeed;
+                movement.walkSpeed = movement.initialWalkSpeed;
+                movement.slideSpeed = movement.initialSlideSpeed;
+                break;
+        }
+    }
+    /*********************************************************************/
     bool hasObjectInfront(float dis, LayerMask layer)
     {
         Vector3 top = transform.position + (transform.forward * 0.25f);
