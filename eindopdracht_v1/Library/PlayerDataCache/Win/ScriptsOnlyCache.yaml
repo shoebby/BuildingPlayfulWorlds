@@ -5,10 +5,17 @@ ScriptsOnlyBuild:
     - CameraMovement
     - InterpolatedTransform
     - InterpolatedTransformUpdater
-    - InterpolationController
     - PlayerController
     - PlayerInput
     - PlayerMovement
+    - buttonHangar
+    - doorControllerTutArea
+    Unity.ProBuilder.Editor.dll:
+    - UnityEditor.ProBuilder.EditorToolbar
+    - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.VertexColorPalette
+    Unity.ProBuilder.dll:
+    - UnityEngine.ProBuilder.ColorPalette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -28,7 +35,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/level.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -57,8 +64,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -70,50 +75,58 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11224}
+      Script: {instanceID: 11228}
     - Class: 114
-      Script: {instanceID: 11230}
+      Script: {instanceID: 11234}
     - Class: 114
-      Script: {instanceID: 11518}
+      Script: {instanceID: 11522}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11602}
     - Class: 114
-      Script: {instanceID: 11888}
+      Script: {instanceID: 11892}
     - Class: 114
-      Script: {instanceID: 11948}
+      Script: {instanceID: 11952}
     - Class: 114
-      Script: {instanceID: 12034}
+      Script: {instanceID: 12038}
     - Class: 114
-      Script: {instanceID: 12084}
+      Script: {instanceID: 12088}
     - Class: 114
-      Script: {instanceID: 12116}
+      Script: {instanceID: 12120}
     - Class: 114
-      Script: {instanceID: 12656}
+      Script: {instanceID: 12370}
     - Class: 114
-      Script: {instanceID: 12874}
+      Script: {instanceID: 12480}
     - Class: 114
-      Script: {instanceID: 12892}
+      Script: {instanceID: 12664}
     - Class: 114
-      Script: {instanceID: 13212}
+      Script: {instanceID: 12882}
     - Class: 114
-      Script: {instanceID: 13262}
+      Script: {instanceID: 12900}
     - Class: 114
-      Script: {instanceID: 13426}
+      Script: {instanceID: 13220}
     - Class: 114
-      Script: {instanceID: 13512}
+      Script: {instanceID: 13270}
     - Class: 114
-      Script: {instanceID: 13566}
+      Script: {instanceID: 13434}
     - Class: 114
-      Script: {instanceID: 13702}
+      Script: {instanceID: 13574}
+    - Class: 114
+      Script: {instanceID: 13710}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -122,8 +135,6 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
-      Script: {instanceID: 0}
-    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -398,10 +409,22 @@ ScriptsOnlyBuild:
     className: ColliderBehaviour
   - hash:
       serializedVersion: 2
+      Hash: 69cd920ece96cf532b043eaf472bc165
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: doorControllerTutArea
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 69cd920ece96cf532b043eaf472bc165
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: buttonHangar
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -650,5 +673,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 5
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/thoma/Documents/BPW/EINDOPDRACHT/boosts_build/eindopdracht_werkPLS.exe
+  - Assets/Scenes/level.unity
+  playerPath: C:/Users/thoma/Documents/BPW/EINDOPDRACHT/level_blockout_v1_build/eindopdracht_werkPLS.exe
