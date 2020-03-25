@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
     bool canSlide()//begrijpelijk en gecomment
     {
         if (!movement.grounded) return false;//moet grounded zijn
-        if (playerInput.input.magnitude <= 0.02f) return false;//moet bewegen
+        if (!playerInput.run) return false;//moet bewegen
         if (slideTime > 0 || status == Status.sliding) return false;//moet niet al aan t sliden zijn
         return true;
     }

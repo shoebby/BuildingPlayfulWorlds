@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class checkpointTimer : MonoBehaviour
 {
     public Text counterText;
-    public float counter = 5f;
+    public float counter = 60f;
     private float deathTime = 0f;
 
     public GameObject player;
@@ -25,8 +26,7 @@ public class checkpointTimer : MonoBehaviour
 
             if (counter <= deathTime)
             {
-                playerPosLoad();
-                counter = 60f;
+                SceneManager.LoadScene(3);
             }
         }
     }
@@ -34,21 +34,5 @@ public class checkpointTimer : MonoBehaviour
     private void OnTriggerEnter(Collider c)
     {
         counterText.gameObject.SetActive(true);
-        PlayerPosSave();
-    }
-
-    public void PlayerPosSave()
-    {
-        PlayerPrefs.SetFloat("p_x", player.transform.position.x);
-        PlayerPrefs.SetFloat("p_y", player.transform.position.y);
-        PlayerPrefs.SetFloat("p_z", player.transform.position.z);
-        PlayerPrefs.SetInt("Saved", 1);
-        PlayerPrefs.Save();
-    }
-    
-    public void playerPosLoad()
-    {
-        PlayerPrefs.SetInt("TimeToLoad", 1);
-        PlayerPrefs.Save();
     }
 }
