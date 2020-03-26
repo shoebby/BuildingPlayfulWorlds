@@ -6,6 +6,7 @@ public class bridgeController : MonoBehaviour
 {
     public GameObject bridge;
     public bool bridgeIsLowering;
+    public GameObject button;
 
     void Update()
     {
@@ -23,5 +24,6 @@ public class bridgeController : MonoBehaviour
     void OnMouseDown()
     {
         bridgeIsLowering = true;
+        button.transform.Translate(Vector3.down * Time.deltaTime * 10);
     }
 }

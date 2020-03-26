@@ -6,6 +6,7 @@ public class doorControllerTutArea : MonoBehaviour
 {
     public GameObject door;
     public bool doorIsOpening;
+    public GameObject button;
 
     void Update()
     {
@@ -23,5 +24,6 @@ public class doorControllerTutArea : MonoBehaviour
     void OnMouseDown()
     {
         doorIsOpening = true;
+        button.transform.Translate(Vector3.down * Time.deltaTime * 10);
     }
 }
