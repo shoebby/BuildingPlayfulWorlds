@@ -135,10 +135,10 @@ MonoBehaviour:
     y: 30
     width: 1852
     height: 987
-  m_MinSize: {x: 678, y: 492}
+  m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 2677
+  controlID: 2641
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -160,10 +160,10 @@ MonoBehaviour:
     y: 0
     width: 1494
     height: 987
-  m_MinSize: {x: 402, y: 492}
+  m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 1
-  controlID: 2678
+  controlID: 2642
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -185,10 +185,10 @@ MonoBehaviour:
     y: 0
     width: 1494
     height: 712
-  m_MinSize: {x: 402, y: 221}
-  m_MaxSize: {x: 8002, y: 4021}
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 2643
+  controlID: 2570
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_MinSize: {x: 366, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 2679
+  controlID: 2643
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -465,10 +465,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 6578}
+      scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 5ae4ffff00ebffffc8faffffe4470000a24d00005c530000
+      m_ExpandedIDs: 0cebffff24ebfffff0ebffff00ecffff7eecffffb4ecffffceecffffc8faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -528,9 +528,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 69.48524, y: 31.195562, z: 42.009094}
+    m_Target: {x: 77.609436, y: 45.998898, z: 66.278786}
     speed: 2
-    m_Value: {x: 69.48479, y: 31.193878, z: 42.0042}
+    m_Value: {x: 77.609436, y: 45.998898, z: 66.278786}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -576,13 +576,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.24281913, y: 0.04491767, z: -0.010596862, w: 0.969669}
+    m_Target: {x: 0.32614827, y: -0.31984302, z: 0.1183192, w: 0.8816746}
     speed: 2
-    m_Value: {x: 0.24267115, y: 0.04343383, z: -0.010225727, w: 0.9690819}
+    m_Value: {x: 0.32632184, y: -0.3185167, z: 0.11782856, w: 0.8821438}
   m_Size:
-    m_Target: 6.7688103
+    m_Target: 60.96075
     speed: 2
-    m_Value: 6.7688103
+    m_Value: 60.96075
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -600,7 +600,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.19017638, y: 0.39340764, z: -0.084121905, w: -0.89626926}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -672,20 +672,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/decorAssets
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/decorAssets
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\thoma\Documents\GitHub\BuildingPlayfulWorlds\eindopdracht_v1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 04600000
-    m_LastClickedID: 24580
-    m_ExpandedIDs: 00000000805f0000825f0000845f0000865f0000885f00008a5f00008c5f000000ca9a3b
+    m_SelectedIDs: be600000
+    m_LastClickedID: 24766
+    m_ExpandedIDs: 0000000030600000326000003460000036600000386000003a6000003c60000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -713,7 +713,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000805f0000825f0000845f0000865f0000885f00008a5f00008c5f000000ca9a3b
+    m_ExpandedIDs: 0000000030600000326000003460000036600000386000003a6000003c60000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -768,7 +768,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 175
+  m_DirectoriesAreaWidth: 180
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
